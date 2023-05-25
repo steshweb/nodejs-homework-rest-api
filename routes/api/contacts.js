@@ -22,7 +22,7 @@ router.put('/:id',
   validateContacts(schemas.addContactSchema), 
   ctrl.updateContactById)
 
-router.patch('/:id', 
+router.patch('/:id/favorite', 
   validateId, 
   validateContacts(schemas.updateFavoriteSchema), 
   ctrl.updateStatusContact)
