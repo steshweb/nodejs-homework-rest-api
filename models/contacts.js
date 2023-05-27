@@ -17,12 +17,17 @@ const contactsSchema = new Schema({
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+    }
 }, {versionKey: false})
 
 const addContactSchema = Joi.object({
   name: Joi.string().required(),
   phone: Joi.string().required(),
-  email: Joi.string().required()
+  email: Joi.string().required(),
+  favorite: Joi.boolean()
 })
 
 const updateFavoriteSchema = Joi.object({
