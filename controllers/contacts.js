@@ -2,18 +2,18 @@ const {Contact} = require('../models/contacts')
 const {HttpError, ctrlWrapper} = require('../helpers')
 
 const getAllContacts = async (req, res) => {
-  const {_id: owner} = req.user
   const {page = 1, limit = 10, favorite} = req.query
   const skip = (page - 1) * limit
+  const query = { owner: req.user._id }
 
-  if(favorite === undefined) {
-    const result = await Contact.find({owner}, '-owner', {skip, limit})
-    res.json(result)
-  } else {
-    const result = await Contact.find({owner, favorite}, '-owner', {skip, limit})
-    res.json(result)
+  if(favorite !== undefined) {
+    query.favorite = favorite
   }
+
+  const result = await Contact.find(query, '-owner', {skip, limit})
+  res.json(result)
 }
+
 
 const getContactById = async (req, res, next) => {
     const {id} = req.params
