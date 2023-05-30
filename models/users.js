@@ -21,7 +21,8 @@ const usersSchema = Schema({
     enum: subscriptionList,
     default: "starter"
   },
-  token: String
+  token: String,
+  avatarURL: String
 }, {versionKey: false})
 
 usersSchema.post('save', handleMongooseError)
