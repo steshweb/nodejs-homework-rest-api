@@ -14,7 +14,6 @@ const getAllContacts = async (req, res) => {
   res.json(result)
 }
 
-
 const getContactById = async (req, res, next) => {
     const {id} = req.params
     const result = await Contact.findById(id, '-owner')

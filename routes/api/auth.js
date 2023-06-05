@@ -8,6 +8,10 @@ const { schemas } = require('../../models/users')
 
 router.post('/register',validateBody(schemas.authSchema), ctrl.register)
 
+router.post('/verify', validateBody(schemas.emailSchema), ctrl.resendVerifyEmail)
+
+router.get('/verify/:verificationToken', ctrl.verifyEmail)
+
 router.post('/login', validateBody(schemas.authSchema), ctrl.login)
 
 router.post('/logout', authenticate, ctrl.logout)
